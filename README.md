@@ -6,7 +6,10 @@ Rails Engine for I18n management with redis as backend.
 
 Add this line to your application's Gemfile:
 
-    gem 'i18n_dashboard'
+``` ruby
+gem 'i18n_dashboard'
+```
+
 
 And then execute:
 
@@ -17,6 +20,12 @@ Modify your config/routes.rb and add:
 ``` ruby
 mount I18nDashboard::Engine => '/i18n_dashboard'
 ```
+
+Add to the bottom of config/environment.rb
+``` ruby
+I18nDashboard::Engine.load!
+```
+
 
 ## Customize
 
@@ -31,8 +40,10 @@ Customize layout
 ``` ruby
 I18nDashboard::TranslationsController.layout 'admin'
 ```
+And add `//= require i18n_dashboard/application` to your javascript.
 
-But beware, you may have to change some things in your template like:
+
+But beware, you may have to change somethings in your template like:
 
 ``` ruby
 # partials
