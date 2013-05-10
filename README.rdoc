@@ -1,3 +1,0 @@
-= I18nDashboard
-
-This project rocks and uses MIT-LICENSE.
