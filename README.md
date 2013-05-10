@@ -31,8 +31,10 @@ Customize layout
 ``` ruby
 I18nDashboard::TranslationsController.layout 'admin'
 ```
+And add `//= require i18n_dashboard/application` to your javascript.
 
-But beware, you may have to change some things in your template like:
+
+But beware, you may have to change somethings in your template like:
 
 ``` ruby
 # partials
