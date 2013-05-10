@@ -36,10 +36,10 @@ But beware, you may have to change some things in your template like:
 
 ``` ruby
 # partials
-render 'admin_menu
+render 'admin_menu'
 
 # change by for example
-render 'application/admin_menu
+render 'application/admin_menu'
 
 # or routes
 admin_root_path
