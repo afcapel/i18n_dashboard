@@ -127,6 +127,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   haml-rails
   i18n_dashboard!
+  jdbc-sqlite3
   jquery-rails
   redis
   sass-rails (~> 3.2.3)

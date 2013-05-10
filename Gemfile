@@ -9,6 +9,9 @@ gemspec
 gem "jquery-rails"
 gem 'redis'
 gem "haml-rails"
+
+# for JRuby
+gem "jdbc-sqlite3", :platform => :jruby
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
