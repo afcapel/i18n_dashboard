@@ -1,1 +1,43 @@
-= render 'translations'
+- title "Translations"
+
+#add-translation.modal.hide.fade
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3 Edit Translation
+  .modal-body
+    .row
+      = form_tag translations_path, id: 'form-translation' do
+        .span2
+          = label_tag :locale
+          = text_field_tag :locale, '', class: 'span2', autofocus: true
+
+        .span3
+          = label_tag :key
+          = text_field_tag :key, '', class: 'span3'
+
+        .span5
+          = label_tag :value
+          = text_area_tag :value, '', class: 'span5'
+        .span2
+          %br
+          = button_tag "Submit", class: 'btn'
+
+
+%hr/
+%table.table.table-hover
+  %thead
+    %th key
+    - I18n.available_locales.each do |locale|
+      %th= locale
+  %tbody
+    - @translations.each do |key|
+      %tr
+        %td= key
+        - I18n.available_locales.each do |locale|
+          %td
+            = link_to '#', data: {key: key, locale: locale, toggle: "modal", target: '#add-translation'}, class: "edit-translation #{(I18nDashboard::Translation.exists?(key, locale) ? nil : 'text-error')}" do
+              = t(key, locale: locale, default: key)
+        %td
+          - unless I18nDashboard::Translation.system_key?(key)
+            = link_to translation_path(key), method: :delete, class: 'btn btn-mini btn-danger' do
+              %i.icon-trash
