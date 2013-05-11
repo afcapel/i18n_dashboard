@@ -1,4 +1,4 @@
-# I18n Dashboard
+# I18n Dashboard [![Build Status](https://travis-ci.org/fourmach/i18n_dashboard.png?branch=master)](https://travis-ci.org/fourmach/i18n_dashboard)
 
 Rails Engine for I18n management with redis as backend.
 
