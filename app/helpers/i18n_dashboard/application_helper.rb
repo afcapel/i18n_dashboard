@@ -10,5 +10,9 @@ module I18nDashboard
     def show_title?
       @show_title
     end
+
+    def humanize_key(key)
+      key.split('.').last.gsub('_', ' ').gsub(/\b('?[a-z])/) { $1.capitalize }
+    end
   end
 end

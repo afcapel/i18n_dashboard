@@ -44,7 +44,7 @@
         - I18n.available_locales.each do |locale|
           %td
             = link_to '#', data: {key: key, locale: locale, toggle: "modal", target: '#add-translation'}, class: "edit-translation #{(I18nDashboard::Translation.exists?(key, locale) ? nil : 'text-error')}" do
-              = t(key, locale: locale, default: key)
+              = t(key, locale: locale, default: humanize_key(key))
         %td
           - unless I18nDashboard::Translation.system_key?(key)
             = link_to translation_path(key), method: :delete, class: 'btn btn-mini btn-danger' do

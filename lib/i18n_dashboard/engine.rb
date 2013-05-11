@@ -4,7 +4,6 @@ module I18nDashboard
   class Engine < ::Rails::Engine
     isolate_namespace I18nDashboard
 
-    config.i18n.fallbacks = true
 
     cattr_accessor :redis
     @@redis = Redis.new
