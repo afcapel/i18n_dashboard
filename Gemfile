@@ -9,7 +9,7 @@ gemspec
 gem "jquery-rails"
 gem 'redis'
 gem "haml-rails"
-
+gem 'coveralls', require: false
 
 gem 'sqlite3', platform: [:ruby, :mswin, :mingw]
 gem "jdbc-sqlite3", platform: :jruby
