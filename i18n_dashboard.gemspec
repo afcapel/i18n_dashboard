@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
+  s.required_ruby_version     = '>= 1.9.3'
+
   s.add_dependency "rails"
   s.add_dependency "jquery-rails"
   s.add_dependency "redis"
@@ -23,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "coffee-rails", "~> 3.2.1"
   s.add_dependency 'uglifier', '>= 1.0.3'
   s.add_dependency 'twitter-bootstrap-rails'
+
 
   s.add_development_dependency "coveralls"
 
