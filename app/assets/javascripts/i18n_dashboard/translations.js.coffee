@@ -5,6 +5,7 @@ jQuery ->
     event.preventDefault()
     $('#form-translation #locale').val('')
     $('#form-translation #key').val('')
+    $('#form-translation #value').val('')
     $('#form-translation #value').trigger('autosize')
     $('#form-translation #value').focus()
 
