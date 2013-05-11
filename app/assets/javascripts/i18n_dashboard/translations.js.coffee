@@ -1,5 +1,13 @@
 jQuery ->
   $('#form-translation textarea').autosize()
+
+  $('.add-translation').click (event) ->
+    event.preventDefault()
+    $('#form-translation #locale').val('')
+    $('#form-translation #key').val('')
+    $('#form-translation #value').trigger('autosize')
+    $('#form-translation #value').focus()
+
   $('.edit-translation').click (event) ->
     event.preventDefault()
     $('#form-translation #locale').val($(@).data('locale'))
