@@ -2,8 +2,12 @@ module I18nDashboard
   class Translation
 
 
-    def self.all
-      Engine.redis.sunion('keys', 'system_keys').sort!
+    def self.all(string = nil)
+      keys = Engine.redis.sunion('keys', 'system_keys')
+      if string.present?
+        keys = keys.grep(/#{string}/)
+      end
+      keys.sort
     end
 
     def self.keys

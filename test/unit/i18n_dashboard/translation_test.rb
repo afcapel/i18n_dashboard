@@ -20,6 +20,14 @@ module I18nDashboard
       assert_equal Translation.all, ['a', 'b', 'c']
     end
 
+    test "should return match keys" do
+      Engine.redis.sadd('keys', 'test.horse.hear')
+      Engine.redis.sadd('system_keys', 'test.horse.nose')
+
+      assert_equal Translation.all('horse'), ['test.horse.hear', 'test.horse.nose']
+      assert_equal Translation.all('nose'), ['test.horse.nose']
+    end
+
     test "should return sorted array of keys" do
       assert_equal Translation.keys, ['a', 'b']
     end

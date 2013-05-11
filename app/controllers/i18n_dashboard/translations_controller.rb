@@ -4,7 +4,7 @@ module I18nDashboard
   class TranslationsController < ApplicationController
 
     def index
-       @translations = Translation.all
+       @translations = Translation.all(params[:query])
     end
 
     def create

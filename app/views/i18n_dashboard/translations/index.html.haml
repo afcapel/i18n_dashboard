@@ -22,7 +22,12 @@
           %br
           = button_tag "Submit", class: 'btn'
 
-
+.navbar
+  .navbar-inner
+    = form_tag translations_path, class: 'navbar-form pull-left', method: :get do
+      = text_field_tag :query, params[:query], hint: 'Search', autofocus: true
+      = button_tag 'search', class: 'btn'
+      = link_to 'clear', translations_path, class: 'btn'
 %hr/
 %table.table.table-hover
   %thead
