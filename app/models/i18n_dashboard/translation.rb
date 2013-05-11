@@ -31,6 +31,9 @@ module I18nDashboard
 
     def self.destroy(key)
       Engine.redis.srem('keys', key)
+      I18n.available_locales.each do |locale|
+        Engine.redis.del("#{locale}.#{key}")
+      end
       I18n.reload!
     end
   end
