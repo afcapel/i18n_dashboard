@@ -8,6 +8,12 @@
 
 Rails Engine for I18n management with redis as backend.
 
+## Screenshots
+
+![#](https://raw.github.com/fourmach/i18n_dashboard/master/doc/screenshot-1.png)
+![#](https://raw.github.com/fourmach/i18n_dashboard/master/doc/screenshot-2.png)
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
