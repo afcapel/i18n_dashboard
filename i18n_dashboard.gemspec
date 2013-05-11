@@ -11,7 +11,6 @@ Gem::Specification.new do |s|
   s.email       = ["ceritium@gmail.com"]
   s.homepage    = "http://fourmach.com"
   s.summary     = "Rails Engine for I18n management with redis as backend."
-  s.description = "Rails Engine for I18n management with redis as backend."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
