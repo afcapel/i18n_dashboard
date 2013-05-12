@@ -3,10 +3,9 @@
   %head
     %meta{:charset => "utf-8"}
     %title
-      = content_for?(:title) ? (yield(:title) + " - Admin") : "Admin"
+      = content_for?(:title) ? (yield(:title) + " - I18n Dashboard") : "I18n Dashboard"
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %meta{:content => "Fourmach.com", :name => "author"}
-    %link{rel: "shortcut icon", type: 'image/icon', href: asset_path('favicon.ico')}
 
     = stylesheet_link_tag "i18n_dashboard/application", media: nil
 
