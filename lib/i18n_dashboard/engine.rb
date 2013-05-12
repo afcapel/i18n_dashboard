@@ -1,5 +1,3 @@
-require "redis"
-
 module I18nDashboard
   class Engine < ::Rails::Engine
     isolate_namespace I18nDashboard
