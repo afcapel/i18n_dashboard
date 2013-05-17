@@ -11,12 +11,12 @@ module I18nDashboard
 
     def create
       Translation.create(params[:key], params[:value], params[:locale])
-      redirect_to root_path, :notice => "Added translations"
+      redirect_to i18n_dashboard_root_path, :notice => "Added translations"
     end
 
     def destroy
       Translation.destroy(params[:id])
-      redirect_to root_path, :notice => "Key deleted"
+      redirect_to i18n_dashboard_root_path, :notice => "Key deleted"
     end
 
   end
