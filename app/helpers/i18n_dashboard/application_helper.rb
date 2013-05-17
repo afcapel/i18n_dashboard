@@ -25,10 +25,6 @@ module I18nDashboard
       end
     end
 
-    def respond_to?(method)
-      main_app_url_helper?(method) or super
-    end
-
     private
 
     def main_app_url_helper?(method)
@@ -36,7 +32,6 @@ module I18nDashboard
         (method.to_s.end_with?('_path') or method.to_s.end_with?('_url')) and
         main_app.respond_to?(method)
     end
-
 
   end
 end
