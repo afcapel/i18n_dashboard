@@ -47,28 +47,20 @@ Redis configuration:
 I18nDashboard::Engine.redis = Redis.new
 ```
 
-Customize layout
+### Advanced
 
-``` ruby
-I18nDashboard::TranslationsController.layout 'admin'
+```ruby
+I18nDashboard.configure do |config|
+  config.layout = 'admin'
+  config.inline_main_app_named_routes = true 
+end
 ```
-And add `//= require i18n_dashboard/application` to your javascript.
 
+If change the layout you should keept in mind:
 
-But beware, you may have to change somethings in your template like:
-
-``` ruby
-# partials
-render 'admin_menu'
-
-# change by for example
-render 'application/admin_menu'
-
-# or routes
-admin_root_path
-# add the prefix main_app
-main_app.admin_root_path
-```
+  * Add `//= require i18n_dashboard/application` to your javascript.
+  * Specify the path to te partials `render 'application/admin_menu'` instead of `render 'admin_menu'`.
+  * Add prefix `main_app` to the main app routes or set `inline_main_app_named_routes = true`.
 
 
 ## Contributing
