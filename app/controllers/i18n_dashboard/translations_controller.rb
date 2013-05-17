@@ -1,7 +1,9 @@
 require_dependency "i18n_dashboard/application_controller"
 
 module I18nDashboard
-  class TranslationsController < ApplicationController
+  class TranslationsController < ::I18nDashboard::ApplicationController
+
+    i18n_dashboard_authenticate
 
     def index
        @translations = Translation.all(params[:query])

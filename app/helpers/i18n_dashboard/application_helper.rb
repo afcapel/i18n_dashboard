@@ -14,5 +14,29 @@ module I18nDashboard
     def humanize_key(key)
       key.split('.').last.gsub('_', ' ').gsub(/\b('?[a-z])/) { $1.capitalize }
     end
+
+    # Can search for named routes directly in the main app, omitting
+    # the "main_app." prefix
+    def method_missing method, *args, &block
+      if main_app_url_helper?(method)
+        main_app.send(method, *args)
+      else
+        super
+      end
+    end
+
+    def respond_to?(method)
+      main_app_url_helper?(method) or super
+    end
+
+    private
+
+    def main_app_url_helper?(method)
+      I18nDashboard::configuration.inline_main_app_named_routes and
+        (method.to_s.end_with?('_path') or method.to_s.end_with?('_url')) and
+        main_app.respond_to?(method)
+    end
+
+
   end
 end
