@@ -33,7 +33,7 @@ Modify your config/routes.rb and add:
 mount I18nDashboard::Engine => '/i18n_dashboard'
 ```
 
-Add to the bottom of config/environment.rb
+Add to the bottom of config/environment.rb or in rake task.
 ``` ruby
 I18nDashboard::Engine.load!
 ```
