@@ -1,21 +1,18 @@
+# Configure Rails Environment
+ENV["RAILS_ENV"] = "test"
+
+require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require "rails/test_help"
+
 require 'simplecov'
 require 'coveralls'
-require 'capybara'
-
-
+require 'capybara/rails'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
 ]
 SimpleCov.start
-
-
-# Configure Rails Environment
-ENV["RAILS_ENV"] = "test"
-
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-require "rails/test_help"
 
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -29,4 +26,9 @@ end
 
 class ActionController::TestCase
   include I18nDashboard::Engine.routes.url_helpers
+end
+
+class ActionDispatch::IntegrationTest
+  # Make the Capybara DSL available in all integration tests
+  include Capybara::DSL
 end
