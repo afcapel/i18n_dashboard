@@ -10,13 +10,28 @@ module I18nDashboard
     end
 
     def create
+
       Translation.create(params[:key], params[:value], params[:locale])
-      redirect_to i18n_dashboard_root_path, :notice => "Added translations"
+      respond_to do |format|
+        format.js{
+          @digest = I18nDashboard::Translation.digest_key(params[:key])
+        }
+        format.html{
+          redirect_to i18n_dashboard_root_path, :notice => "Added translations"
+        }
+      end
+
     end
 
     def destroy
       Translation.destroy(params[:id])
-      redirect_to i18n_dashboard_root_path, :notice => "Key deleted"
+      respond_to do |format|
+        format.js
+        format.html{
+          redirect_to i18n_dashboard_root_path, :notice => "Key deleted"
+        }
+      end
+
     end
 
   end

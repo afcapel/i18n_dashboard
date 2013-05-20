@@ -1,7 +1,7 @@
 jQuery ->
   $('#form-translation textarea').autosize()
 
-  $('.add-translation').click (event) ->
+  $('#add-translation').click (event) ->
     event.preventDefault()
     $('#form-translation #locale').val('')
     $('#form-translation #key').val('')

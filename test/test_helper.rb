@@ -1,5 +1,15 @@
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear!
+require 'capybara'
+
+
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+SimpleCov.start
+
 
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
@@ -15,4 +25,8 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 # Load fixtures from the engine
 if ActiveSupport::TestCase.method_defined?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
+end
+
+class ActionController::TestCase
+  include I18nDashboard::Engine.routes.url_helpers
 end

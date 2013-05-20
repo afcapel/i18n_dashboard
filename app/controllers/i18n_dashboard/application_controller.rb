@@ -18,5 +18,6 @@ module I18nDashboard
       I18nDashboard::configuration
     end
 
+
   end
 end

@@ -1,0 +1,14 @@
+$('#add-translation').modal('hide');
+
+partial = '<%= escape_javascript(render 'key_translation', key: params[:key]) %>';
+translation_key = "#translation_key_<%= @digest %>";
+
+if( $(translation_key).size() > 0 ){
+
+  $(translation_key).replaceWith(partial);
+
+} else {
+
+  $('#translations-table tbody').prepend(' <%= escape_javascript(render 'key_translation', key: params[:key]) %> ');
+
+}

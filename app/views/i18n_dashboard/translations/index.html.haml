@@ -6,7 +6,7 @@
     %h3 Translation
   .modal-body
     .row
-      = form_tag translations_path, id: 'form-translation' do
+      = form_tag translations_path, id: 'form-translation', remote: true do
         .span1
           = label_tag :locale
           = text_field_tag :locale, '', class: 'span1', autofocus: true
@@ -30,22 +30,13 @@
       = link_to 'clear', translations_path, class: 'btn'
 
     .pull-right
-      = link_to 'new', '#', data: { toggle: "modal", target: '#add-translation'}, class: 'btn add-translation'
+      = link_to 'new', '#', data: { toggle: "modal", target: '#add-translation'}, id: 'add-translation', class: 'btn'
 %hr/
-%table.table.table-hover
+%table#translations-table.table.table-hover
   %thead
     %th key
     - I18n.available_locales.each do |locale|
       %th= locale
   %tbody
     - @translations.each do |key|
-      %tr
-        %td= key
-        - I18n.available_locales.each do |locale|
-          %td
-            = link_to '#', data: {key: key, locale: locale, toggle: "modal", target: '#add-translation'}, class: "edit-translation #{(I18nDashboard::Translation.exists?(key, locale) ? nil : 'text-error')}" do
-              = t(key, locale: locale, default: humanize_key(key))
-        %td
-          - unless I18nDashboard::Translation.system_key?(key)
-            = link_to translation_path(key), method: :delete, class: 'btn btn-mini btn-danger' do
-              %i.icon-trash
+      = render 'key_translation', key: key

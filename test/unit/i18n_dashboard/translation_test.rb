@@ -16,6 +16,13 @@ module I18nDashboard
       Translation.create('test.hello', 'Hola', 'es')
     end
 
+    test "should create a key_digest" do
+      digest = create_test_translation
+
+      Translation.destroy(digest)
+      assert !Engine.redis.exists('es.test.hello')
+    end
+
     test "should return union of keys and system_keys sorted" do
       assert_equal ['a', 'b', 'c'], Translation.all
     end
@@ -61,14 +68,20 @@ module I18nDashboard
     end
 
     test "should remove the key from keys" do
-      create_test_translation
-      Translation.destroy('test.hello')
+      digest = create_test_translation
+      Translation.destroy(digest)
       assert !Translation.keys.include?('test.hello')
     end
 
+    test "should remove from keys_digest" do
+      digest = create_test_translation
+      Translation.destroy(digest)
+      assert !Engine.redis.hexists('keys_digest', digest)
+    end
+
     test "should remove the translation" do
-      create_test_translation
-      Translation.destroy('test.hello')
+      digest = create_test_translation
+      Translation.destroy(digest)
       assert !Engine.redis.exists('es.test.hello')
     end
   end

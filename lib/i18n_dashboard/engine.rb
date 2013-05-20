@@ -1,3 +1,4 @@
+require 'redis'
 module I18nDashboard
   class Engine < ::Rails::Engine
     isolate_namespace I18nDashboard
@@ -8,6 +9,7 @@ module I18nDashboard
 
     class << self
       def load!
+        I18n.backend = I18n::Backend::Simple.new
         I18n.t('hello')
         translations = I18n.backend.send(:translations)
         keys = extract_i18n_keys(translations)
@@ -19,17 +21,17 @@ module I18nDashboard
           key = full_key.split('.')[1..-1].join('.')
           locale = full_key.split('.')[0]
           Engine.redis.sadd('system_keys', key)
-
           to_resave[full_key] = I18n.t(key, locale: locale)
         end
 
         I18n.backend = I18n::Backend::Chain.new(I18n::Backend::KeyValue.new(Engine.redis), I18n.backend)
-
         to_resave.each do |full_key, value|
           key = full_key.split('.')[1..-1].join('.')
           locale = full_key.split('.')[0]
           I18n.backend.store_translations(locale, {key => value}, :escape => false)
         end
+
+        I18nDashboard::Translation.rehash!
       end
 
       def extract_i18n_keys(hash, parent_keys = [])
