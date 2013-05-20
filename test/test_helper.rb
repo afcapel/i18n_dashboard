@@ -2,8 +2,6 @@ require 'simplecov'
 require 'coveralls'
 require 'capybara'
 
-
-
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
